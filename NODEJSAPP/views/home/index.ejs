@@ -1,0 +1,165 @@
+<%- include('../_partial/_header'); -%> 
+<%- include('background'); -%> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Term Project</title>
+<meta charset="utf-8">
+<!--<link rel="stylesheet" type="text/css" href="/css/Backgroundstylesheet.css">-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<style>
+    
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;  
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: white;
+  padding: 20px;
+  text-align:left;
+  margin-top: 20px;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 20%;
+  padding-left: 40px;
+}
+
+/* Right column */
+.rightcolumn {
+  float: right;
+  text-align: center;
+  width: 60%;
+  /*background-color: #f1f1f1;*/
+  padding-left: 200px;
+  overflow: auto;
+
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}
+#lanuages {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#lanuages td, #lanuages th {
+  float: none;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#lanuages tr:nth-child(even){background-color: #f2f2f2;}
+
+#lanuages tr:hover {background-color: #ddd;}
+
+#lanuages th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  /*background-color: #04AA6D;*/
+  color: white;
+}
+</style>
+</head>
+<body>
+    
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card" style = "height: 100%;">
+    <h2>Languages</h2>
+    <p>Select A Language.</p>
+    <ul>
+    <table id="lanuages">
+        <tr>
+          
+          <td><a href="#C++">C++</a></td>
+        </tr>
+        <tr>
+            <td><a href="#JS">JS</a></td>
+          </tr>
+          <tr>
+            <td><a href="#Java">Java</a></td>
+          </tr>
+          <tr>
+            <td><a href="#HTML">HTML</a></td>
+          </tr>
+          <tr>
+            <td><a href="#SQL">SQL</a></td>
+          </tr>          
+      </table>
+    </ul>
+  </div>
+</div>
+  
+  <div class="rightcolumn">
+    <div class= "card" style = "height: 150px;">
+    <h2>Tutorials</h2>    
+    </div>
+    <div class="card" style = "height: 400px;">
+    <div class= "video" style = "height: 200px;">
+    <iframe width="900" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+    </iframe>
+   </div>
+</div>
+   <div class="card" style = "height: 400px;">
+    <div class= "video" style = "height: 200px;">
+    <iframe width="900" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+    </iframe>
+   </div>
+</div>
+   <div class="card" style = "height: 400px;">
+    <div class= "video" style = "height: 200px;">
+    <iframe width="900" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+    </iframe>
+   </div>
+</div>
+   <div class="card" style = "height: 400px;">
+    <div class= "video" style = "height: 200px;">
+    <iframe width="900" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+    </iframe>
+   </div>
+  </div>
+  
+  
+</div>
+  
+</body>
+</html>
+
+
+<%- include('../_partial/_footer'); -%>
