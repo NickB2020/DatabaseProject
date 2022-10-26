@@ -1,9 +1,11 @@
 var express = require("express");
 var path = require("path");
-/*var mysql = require("mysql");
+var connection = require("./database.js")
+/*
 var cookieparser = require("cookie-parser");
 var session = require("express-session");
-var flash = require("connect-flash");*/
+var flash = require("connect-flash");
+*/
 
 
 //var routes = require("./routes");

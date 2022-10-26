@@ -1,26 +1,36 @@
 var express = require("express");
+var database = require("../../database.js");
 
 var router = express.Router();
 
 router.get("/", function(req,res){
     //  console.log("basic view");
-      res.render("home/");
+    let query = 'Select vid From cpp Limit 4';
+
+    database.query(query, function (error, results) {
+      if(error) throw error;
+  
+      res.render("home/", {data: results});
+    });  
       
   });
   
-  router.get("/home", function(req,res){
-      res.render("home/");
-      
-  });
+router.get("/home", function(req,res){
+  database.query('Select vid From cpp Limit 4', function (error, results) {
+    if(error) throw error;
 
-  router.get("/login", function(req,res){
-      res.render("home/login");
-      
-  });
+    res.render("home/", {data: results});
+  });   
+});
 
-  router.get("/signup", function(req,res){
-    res.render("home/signup");
+router.get("/login", function(req,res){
+    res.render("home/login");
     
-  });
+});
 
-  module.exports = router;
+router.get("/signup", function(req,res){
+  res.render("home/signup");
+  
+});
+
+module.exports = router;
