@@ -20,19 +20,27 @@ body {
   margin: 0;  
 }
 
-/* Add a card effect for articles */
+/* Add a card effect for divs */
 .card {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   padding: 20px;
-  text-align:left;
+  text-align: left;
+  margin-top: 20px;
+}
+
+/* Add transparent card behind videos to hold videos, but remain unseen */
+.card.second{
+  background-color: rgba(0, 0, 0, 0);
+  padding: 20px;
+  text-align: left;
   margin-top: 20px;
 }
 
 /* Create two unequal columns that floats next to each other */
 /* Left column */
-.leftcolumn {   
+.leftcolumn {
   float: left;
-  width: 20%;
+  width: fit-content;
   padding-left: 40px;
 }
 
@@ -75,23 +83,26 @@ body {
   width: 100%;
 }
 
-#lanuages td, #lanuages th {
-  float: none;
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#lanuages tr:nth-child(even){background-color: #f2f2f2;}
-
-#lanuages tr:hover {background-color: #ddd;}
-
-#lanuages th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+#buttonLang {
   text-align: left;
-  /*background-color: #04AA6D;*/
-  color: white;
+  cursor: pointer;
+  display: block;
+  margin-top: 8px;
+  width: 100%;
 }
+
+#videoFrame {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    background-size: cover;
+    overflow: hidden;
+}
+
 </style>
 </head>
 <body>
@@ -99,56 +110,34 @@ body {
 
 <div class="row">
   <div class="leftcolumn">
-    <div class="card" style = "height: 100%;">
+    <div class="card" style = "height: fit-content;">
     <h2>Languages</h2>
-    <p>Select A Language.</p>
-    <ul>
-    <table id="lanuages">
-        <tr>
-          
-          <td><a href="#C++">C++</a></td>
-        </tr>
-        <tr>
-            <td><a href="#JS">JS</a></td>
-          </tr>
-          <tr>
-            <td><a href="#Java">Java</a></td>
-          </tr>
-          <tr>
-            <td><a href="#HTML">HTML</a></td>
-          </tr>
-          <tr>
-            <td><a href="#SQL">SQL</a></td>
-          </tr>          
-      </table>
-    </ul>
+      <div id="lanuages">
+        <button id="buttonLang"><a href="#C++">C++</a></button>
+        <button id="buttonLang"><a href="#JS">JS</a></button>
+        <button id="buttonLang"><a href="#Java">Java</a></button>
+        <button id="buttonLang"><a href="#HTML">HTML</a></button>
+        <button id="buttonLang"><a href="#SQL">SQL</a></button>     
+      </div>
   </div>
 </div>
   
 <div class="rightcolumn">
-  <div class= "card" style = "height: 150px;">
+  <div class="card" style = "height: 75px;">
     <h2>Tutorials</h2>    
   </div>
 
   <div>
     <% if(data.length){ for(var i = 0; i< data.length; i++) {%>
       <% var videoUrl = "https://www.youtube.com/embed/" + data[i].vid %>
-      <div class="card" style = "height: 400px;">
-        <div class= "video" style = "height: 200px;">
-          <iframe width="900" height="345" src="https://www.youtube.com/embed/<%= data[i].vid %>">
+      <div class="card second" style = "height: 400px;">
+        <div class="video" style = "height: 200px;">
+          <iframe id="videoFrame" src="https://www.youtube.com/embed/<%= data[i].vid %>">
           </iframe>
         </div>
       </div>
     <% } } %>
   </div>
-
-  <div class="card" style = "height: 400px;">
-    <div class= "video" style = "height: 200px;">
-      <iframe width="900" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
-      </iframe>
-    </div>
-  </div>
-  
 </div>
   
 </body>
