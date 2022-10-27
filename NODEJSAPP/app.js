@@ -1,6 +1,5 @@
 var express = require("express");
 var path = require("path");
-var connection = require("./database.js")
 /*
 var cookieparser = require("cookie-parser");
 var session = require("express-session");

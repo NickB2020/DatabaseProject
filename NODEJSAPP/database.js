@@ -12,10 +12,4 @@ connection.connect(function(error) {
   console.log('Database is connected successfully !');
 });
 
-connection.query('Select vid From cpp', function (error, results, fields) {
-  if (error) throw error;
-  console.log(results);
-})
-  
-
 module.exports = connection;
