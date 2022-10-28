@@ -1,5 +1,7 @@
 <%- include('../_partial/_header'); -%> 
-<%- include('background'); -%> 
+<%- include('../css/background'); -%> 
+<%- include('../css/btn'); -%> 
+<%- include('../css/stylesheet'); -%> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,137 +11,28 @@
 <!--<link rel="stylesheet" type="text/css" href="/css/Backgroundstylesheet.css">-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-<style>
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;  
-}
-
-/* Add a card effect for divs */
-.card {
-  background-color: rgb(255, 255, 255);
-  padding: 20px;
-  text-align: left;
-  margin-top: 20px;
-}
-
-/* Add transparent card behind videos to hold videos, but remain unseen */
-.card.second{
-  background-color: rgba(0, 0, 0, 0);
-  padding: 20px;
-  text-align: left;
-  margin-top: 20px;
-}
-
-.card.third{
-  font-family: monospace;
-  background-color: rgb(0, 0, 0);
-  color: lime;
-  padding: 20px;
-  text-align: left;
-  margin-top: 20px;
-  
-}
-
-/* Create two unequal columns that floats next to each other */
-/* Left column */
-.leftcolumn {
-  float: left;
-  width: fit-content;
-  padding-left: 25px;
-}
-
-/* Right column */
-.rightcolumn {
-  float: right;
-  text-align: center;
-  width: 60%;
-  /*background-color: #f1f1f1;*/
-  padding-left: 200px;
-  overflow: auto;
-  border: 3px white;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 800px) {
-  .leftcolumn, .rightcolumn {   
-    width: 100%;
-    padding: 0;
-  }
-}
-
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 400px) {
-  .topnav a {
-    float: none;
-    width: 100%;
-  }
-}
-#languages {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#buttonLang {
-  text-align: left;
-  cursor: pointer;
-  display: block;
-  margin-top: 8px;
-  width: 100%;
-}
-
-#videoFrame {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    background-size: cover;
-    overflow: hidden;
-}
-
-a:link { text-decoration: none; }
-a:visited { text-decoration: none; }
-a:hover { text-decoration: none; }
-a:active { text-decoration: none; }
-
-</style>
 </head>
 <body>
     
 
 <div class="row">
   <div class="leftcolumn">
-    <div class="card" style = "height: fit-content;">
-    <h2>Languages</h2>
+    <div class="card" style = "height: fit-content; background-color: transparent; border: none;">
+    <!--<h2>Languages</h2>-->
       <div id="languages">
-        <button id="buttonLang"><a href="#C++">C++</a></button>
-        <button id="buttonLang"><a href="#JS">JS</a></button>
-        <button id="buttonLang"><a href="#Java">Java</a></button>
-        <button id="buttonLang"><a href="#HTML">HTML</a></button>
-        <button id="buttonLang"><a href="#SQL">SQL</a></button>     
+        <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#cpp"><b>C++</b></a></button>
+        <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#Java"><b>JAVA</b></a></button>
+        <button class="emptybutton"><a class="button-54" style="color: #1C2833" href="#html"><b>HTML</b></a></button>
+        <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#js"><b>JavaScript</b></a></button> 
+        <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#sql"><b>SQL</b></a></button>
+        <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#asp"><b>ASP.NET</b></a></button> 
       </div>
   </div>
 </div>
   
 <div class="rightcolumn">
   <div class="card third" style = "height: 75px;">
-    <h2>C://Users//Code_Tutorials</h2>
+    <h2>C:\Users\Code_Tutorials</h2>
   </div>
 
   <div>
