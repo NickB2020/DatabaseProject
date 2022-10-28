@@ -1,18 +1,14 @@
-<%- include('../_partial/_header'); -%> 
-<%- include('../css/background'); -%> 
-
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <title>Login / Sign Up Form</title>
-    <link rel="shortcut icon" href="/assets/favicon.ico">
-    <link rel="stylesheet" href="stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+    <title>Login</title>
+    <%- include('../_partial/_header'); -%> 
+    <%- include('../css/background'); -%> 
 </head>
 <body>
     <div class="container">
-        <form class="form" id="login" action="/login/user" method="post">
+        <form class="form" id="login" action="/admin" method="post">
             <h1 class="form__title">Login</h1>
             <div class="form__message form__message--error"></div>
             <div class="form__input-group">

@@ -1,52 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Code Destroyer</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <%- include('../_partial/_header'); -%> 
 <%- include('../css/background'); -%> 
 <%- include('../css/btn'); -%> 
 <%- include('../css/stylesheet'); -%> 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Term Project</title>
-<meta charset="utf-8">
-<!--<link rel="stylesheet" type="text/css" href="/css/Backgroundstylesheet.css">-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
+
 <body>
-    
 
-<div class="row">
-  <div class="leftcolumn">
-    <div class="card" style = "height: fit-content; background-color: transparent; border: none;">
-    <!--<h2>Languages</h2>-->
-      <div id="languages">
-        <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#cpp"><b>C++</b></a></button>
-        <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#Java"><b>JAVA</b></a></button>
-        <button class="emptybutton"><a class="button-54" style="color: #1C2833" href="#html"><b>HTML</b></a></button>
-        <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#js"><b>JavaScript</b></a></button> 
-        <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#sql"><b>SQL</b></a></button>
-        <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#asp"><b>ASP.NET</b></a></button> 
-      </div>
-  </div>
-</div>
-  
-<div class="rightcolumn">
-  <div class="card third" style = "height: 75px;">
-    <h2>C:\Users\Code_Tutorials</h2>
-  </div>
-
-  <div>
-    <% if(data.length){ for(var i = 0; i< data.length; i++) {%>
-      <% var videoUrl = "https://www.youtube.com/embed/" + data[i].vid %>
-      <div class="card second" style = "height: 400px;">
-        <div class="video" style = "height: 200px;">
-          <iframe id="videoFrame" src="https://www.youtube.com/embed/<%= data[i].vid %>">
-          </iframe>
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card" style = "height: fit-content; background-color: transparent; border: none;">
+      <!--<h2>Languages</h2>-->
+        <div id="languages">
+          <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#cpp"><b>C++</b></a></button>
+          <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#Java"><b>JAVA</b></a></button>
+          <button class="emptybutton"><a class="button-54" style="color: #1C2833" href="#html"><b>HTML</b></a></button>
+          <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#js"><b>JavaScript</b></a></button> 
+          <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#sql"><b>SQL</b></a></button>
+          <button class="emptybutton"><a class="button-54" style="color: #1C2833;" href="#asp"><b>ASP.NET</b></a></button> 
         </div>
-      </div>
-    <% } } %>
+    </div>
   </div>
-</div>
+    
+  <div class="rightcolumn">
+    <div class="card third" style = "height: 75px;">
+      <h2>Code_Destroyer:\Code_Tutorials\Home</h2>
+    </div>
+
+    <div>
+      <% if(data.length){ for(var i = 0; i< data.length; i++) {%>
+        <% var videoUrl = "https://www.youtube.com/embed/" + data[i].vid %>
+        <div class="card second" style = "height: 400px;">
+          <div class="video" style = "height: 200px;">
+            <iframe id="videoFrame" src="https://www.youtube.com/embed/<%= data[i].vid %>">
+            </iframe>
+          </div>
+        </div>
+      <% } } %>
+    </div>
+  </div>
   
 </body>
 </html>

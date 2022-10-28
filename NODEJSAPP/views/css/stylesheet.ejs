@@ -7,7 +7,52 @@
     body {
       margin: 0;  
     }
+
+    .main {
+        padding: 20px 30px;
+        overflow: hidden;
+    }
     
+    .select {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 30px;
+        background: #1B1C21;
+        border-radius: 24px;
+    }
+
+    .select select {
+        padding: 0 20px;
+        width: 350px;
+        height: 40px;
+        color: #999999;
+        background: #fff;
+        border-radius: 12px;
+        border: 0;
+        outline: none;
+    }
+
+    .select .search {
+        display: flex;
+        width: 560px;
+        height: 40px;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .select .search input {
+        flex: 1;
+    }
+
+    .select .search div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 45px;
+        height: 40px;
+        background-color: #067BFB;
+    }
+
     /* Add a card effect for divs */
     .card {
       background-color: rgb(255, 255, 255);
@@ -106,4 +151,24 @@
     a:hover { text-decoration: none; }
     a:active { text-decoration: none; }
     
+    /* rounded corner table */
+    /* top-left border-radius */
+    table tr:first-child th:first-child {
+    border-top-left-radius: 12px;
+    }
+
+    /* top-right border-radius */
+    table tr:first-child th:last-child {
+    border-top-right-radius: 12px;
+    }
+
+    /* bottom-left border-radius */
+    table tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+    }
+
+    /* bottom-right border-radius */
+    table tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+    }
     </style>

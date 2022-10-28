@@ -16,7 +16,7 @@ router.get("/", function(req, res){
       res.render("home/", {data: results});
     });  
       
-  });
+});
   
 router.get("/home", function(req, res){
 
@@ -27,7 +27,6 @@ router.get("/home", function(req, res){
   });
 
 });
-
 
 /* LOGIN PAGE */
 router.get("/login", function(req, res){
@@ -41,7 +40,7 @@ router.get("/signup", function(req, res){
 });
 
 /* USER PAGE */
-router.post("/login/user", function(req, res){
+router.post("/admin", function(req, res){
   let val = req.body;
   let userName = val.userName;
   let userPassword = val.userPassword;
@@ -52,10 +51,16 @@ router.post("/login/user", function(req, res){
       throw error;
     }
     else if ( data.length > 0){
-      res.end('login successfully');
+      let query = 'SELECT * FROM youtubevideo natural join videos;';
+
+      database.query(query, function (error, results) {
+        if(error) throw error;
+
+        res.render('home/admin', {data: results});
+      })
     }
     else{
-      res.end('login unsuccessfully');
+      res.end('login unsuccessfully, please return');
     }
   })
 });
