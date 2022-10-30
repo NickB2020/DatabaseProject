@@ -1,5 +1,6 @@
 var express = require("express");
 var path = require("path");
+const moment = require("moment");
 /*
 var cookieparser = require("cookie-parser");
 var session = require("express-session");
@@ -18,6 +19,11 @@ app.set("port", process.env.PORT || 3000);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use((req, res, next)=>{
+    res.locals.moment = moment;
+    next();
+  });
+  
 app.use("/", require("./routes/web"));
 app.use("/api", require("./routes/api"));
 
