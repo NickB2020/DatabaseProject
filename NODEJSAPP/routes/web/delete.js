@@ -5,17 +5,14 @@ var router = express.Router();
 
 router.use(bodyParser.urlencoded({ extended : true }));
 
-router.post("/add", function(req, res){
+router.post("/delete", function(req, res){
     let val = req.body;
-    let queryInsert = 'INSERT INTO video VALUE (?,?,?,?,?,?,?)';
+    let query = 'DELETE FROM video WHERE vid = ?';
 
-    database.query(queryInsert, 
-      [val.videoId, val.videoType, val.videoName, val.viewCount, val.likeCount, val.publishDate, val.duration], 
-      function(error, data){
-
+    database.query(query, [val.videoId], function(error, data){
       if(error) throw error;
 
-      console.log(val.videoId + ' added');
+      console.log(val.videoId + ' deleted');
 
     })
 

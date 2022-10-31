@@ -28,7 +28,7 @@
                         <button type="submit" class="btn btn-primary">Search</button>
                     </div>
                 </form> 
-                <button type="button" class="btn btn-primary" onclick="showAdd()">Add record</button>
+                <button type="button" class="btn btn-primary" onclick="addBox()">Add record</button>
             </div>
         </div>
     </div>
@@ -55,12 +55,12 @@
                     <td><%= item.vname %></td>
                     <td><%= item.viewCount %></td>
                     <td><%= item.likeCount %></td>
-                    <td><%= moment(item.publishDate).format('DD/MM/YYYY') %></td>
+                    <td><%= moment(item.publishDate).format('MM/DD/YYYY') %></td>
                     <td><%= item.duration %></td>
                     <td>
                         <div class="btn-group btn-group-sm">
-                            <button type="button" class="btn btn-primary" onclick="showUpdate()">Update</button>
-                            <button type="button" class="btn btn-danger" data-id="<%= item.vid %>" onclick="showDelete()">Delete</button>
+                            <button type="button" class="btn btn-primary" data-key="item" value="item" onclick="updateBox('<%= item %>')">Update</button>
+                            <button type="button" class="btn btn-danger" onclick="deleteBox('<%= item.vid %>')">Delete</button>
                         </div>
                     </td>
                 </tr>
@@ -73,7 +73,7 @@
 
     <div class="dialog-content" id="addbox">
         <div class="dialog-header">
-            <h3>Add record</h3>
+            <h3>Add</h3>
             <div class="close">
                 <span class="close" onclick="hideBox()">&times;</span>
             </div>
@@ -82,7 +82,7 @@
             <div>
                 <p>Video ID</p>
                 <p>
-                    <input type="text" class="form-control" autofocus placeholder="embedded id" name="videoId" required/>
+                    <input type="text" class="form-control" autofocus placeholder="Embedded id" name="videoId" required/>
                 </p>
             </div>
             <div>
@@ -122,7 +122,7 @@
                 <p>Publish Date</p>
                 <p>
                     <div class="md-form md-outline input-with-post-icon datepicker">
-                        <input placeholder="Select date" type="date" id="example" class="form-control" name="publishDate" required>
+                        <input placeholder="Select date" type="date" class="form-control" name="publishDate" required>
                       </div>
                 </p>
             </div>
@@ -146,7 +146,10 @@
             </div>
         </div>
         <form action="/delete" method="post">
-            <div><h5>Please confirm again to delete this record</h3></div>
+            <div><h5>Please confirm to delete video</h5></div>
+            <div id="deleteTarget">
+                <input id="deleteBoxInput" type="hidden" name="videoId"></input>
+            </div>
             <div class="dialog-footer">
                 <button class="form__button btn btn-primary" type="submit">Confirm</button>
                 <!-- <button class="cancel" onclick="hideAdd()">Cancel</button> --> 
@@ -154,15 +157,101 @@
         </form>
     </div>
     
+    <div class="dialog-content" id="updatebox">
+        <div class="dialog-header">
+            <h3>Update</h3>
+            <div class="close">
+                <span class="close" onclick="hideBox()">&times;</span>
+            </div>
+        </div>
+        <form action="/update" method="post">
+            <div>
+                <p>Video ID</p>
+                <p>
+                    <input type="text" class="form-control" name="videoId" id="updatevid" required/>
+                </p>
+            </div>
+            <div>
+                <p>Video Type</p>
+                <p>
+                    <div>
+                        <select class="box-select" name="videoType" id="">
+                            <option value="asp">ASP.NET</option>
+                            <option value="cpp">C++</option>
+                            <option value="java">Java</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="sql">SQL</option>
+                        </select>
+                    </div>
+                </p>
+            </div>
+            <div>
+                <p>Video Name</p>
+                <p>
+                    <input type="text" class="form-control" name="videoName" required/>
+                </p>
+            </div>
+            <div>
+                <p>View Count</p>
+                <p>
+                    <input type="text" class="form-control" name="viewCount" required/>
+                </p>
+            </div>
+            <div>
+                <p>Like Count</p>
+                <p>
+                    <input type="text" class="form-control" name="likeCount" required/>
+                </p>
+            </div>
+            <div>
+                <p>Publish Date</p>
+                <p>
+                    <div class="md-form md-outline input-with-post-icon datepicker">
+                        <input placeholder="Select date" type="date" id="" class="form-control" name="publishDate" required>
+                      </div>
+                </p>
+            </div>
+            <div>
+                <p>Duration</p>
+                <p>
+                    <input type="text" class="form-control" name="duration" required/>
+                </p>
+            </div>
+            <div class="dialog-footer">
+                <button class="form__button btn btn-primary" type="submit">Submit</button>
+                <!-- <button class="cancel" onclick="hideAdd()">Cancel</button> --> 
+            </div>
+        </form>
+    </div>
+
 </body>
 
 <script>
-    function showAdd() {
+    function addBox() {
         document.getElementById("dialog").style.display = "block";
         document.getElementById("addbox").style.display = "block";
     }
 
-    function showDelete() {
+    function updateBox(item) {
+        const vid = document.getElementById("updatevid");
+
+        vid.setAttribute('value', item);
+
+        document.getElementById("dialog").style.display = "block";
+        document.getElementById("updatebox").style.display = "block";
+    }
+
+    function deleteBox(vid) {
+        const deleteId = document.createElement('h6');
+        const content = document.createTextNode(vid);
+        const parent = document.getElementById("deleteTarget");
+        const deleteBoxInput = document.getElementById("deleteBoxInput");
+
+        deleteBoxInput.setAttribute('value', vid);
+        deleteId.appendChild(content);
+        parent.appendChild(deleteId);
+
         document.getElementById("dialog").style.display = "block";
         document.getElementById("deletebox").style.display = "block";
     }
@@ -171,8 +260,8 @@
         document.getElementById("dialog").style.display = "none";
         document.getElementById("addbox").style.display = "none";
         document.getElementById("deletebox").style.display = "none";
+        document.getElementById("updatebox").style.display = "none";
     }
-
 
 </script>
 

@@ -10,4 +10,6 @@ router.use("/", require("./add"));
 
 router.use("/", require("./search"));
 
+router.use("/", require("./delete"));
+
 module.exports = router;
