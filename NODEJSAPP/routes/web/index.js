@@ -12,4 +12,6 @@ router.use("/", require("./search"));
 
 router.use("/", require("./delete"));
 
+router.use("/", require("./update"));
+
 module.exports = router;
