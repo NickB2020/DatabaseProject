@@ -30,7 +30,6 @@
   <div class="rightcolumn">
     <div>
       <% if(data.length){ for(var i = 0; i< data.length; i++) {%>
-        <% var videoUrl = "https://www.youtube.com/embed/" + data[i].vid %>
         <div class="card second" style = "height: 400px;">
           <div class="video" style = "height: 200px;">
             <iframe id="videoFrame" src="https://www.youtube.com/embed/<%= data[i].vid %>">

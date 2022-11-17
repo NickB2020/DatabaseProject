@@ -23,7 +23,7 @@ app.use((req, res, next)=>{
     res.locals.moment = moment;
     next();
   });
-  
+
 app.use("/", require("./routes/web"));
 app.use("/api", require("./routes/api"));
 
