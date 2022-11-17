@@ -59,7 +59,7 @@
                     <td><%= item.duration %></td>
                     <td>
                         <div class="btn-group btn-group-sm">
-                            <button type="button" class="btn btn-primary" data-key="item" value="item" onclick="updateBox('<%= item %>')">Update</button>
+                            <button type="button" class="btn btn-primary" onclick="updateBox(<%= JSON.stringify(item) %>)">Update</button>
                             <button type="button" class="btn btn-danger" onclick="deleteBox('<%= item.vid %>')">Delete</button>
                         </div>
                     </td>
@@ -175,13 +175,13 @@
                 <p>Video Type</p>
                 <p>
                     <div>
-                        <select class="box-select" name="videoType" id="">
-                            <option value="asp">ASP.NET</option>
-                            <option value="cpp">C++</option>
-                            <option value="java">Java</option>
-                            <option value="javascript">JavaScript</option>
-                            <option value="python">Python</option>
-                            <option value="sql">SQL</option>
+                        <select class="box-select" name="videoType" id="updatetpye">
+                            <option value="asp" id="aspop">ASP.NET</option>
+                            <option value="cpp" id="cppop">C++</option>
+                            <option value="java" id="javaop">Java</option>
+                            <option value="javascript" id="javascriptop">JavaScript</option>
+                            <option value="python" id="pythonop">Python</option>
+                            <option value="sql" id="sqlop">SQL</option>
                         </select>
                     </div>
                 </p>
@@ -189,33 +189,33 @@
             <div>
                 <p>Video Name</p>
                 <p>
-                    <input type="text" class="form-control" name="videoName" required/>
+                    <input type="text" class="form-control" name="videoName" id="updatevname" required/>
                 </p>
             </div>
             <div>
                 <p>View Count</p>
                 <p>
-                    <input type="text" class="form-control" name="viewCount" required/>
+                    <input type="text" class="form-control" name="viewCount" id="updateview" required/>
                 </p>
             </div>
             <div>
                 <p>Like Count</p>
                 <p>
-                    <input type="text" class="form-control" name="likeCount" required/>
+                    <input type="text" class="form-control" name="likeCount" id="updatelike" required/>
                 </p>
             </div>
             <div>
                 <p>Publish Date</p>
                 <p>
                     <div class="md-form md-outline input-with-post-icon datepicker">
-                        <input placeholder="Select date" type="date" id="" class="form-control" name="publishDate" required>
-                      </div>
+                        <input placeholder="Select date" type="date" class="form-control" name="publishDate" id="updatepublish" required>
+                    </div>
                 </p>
             </div>
             <div>
                 <p>Duration</p>
                 <p>
-                    <input type="text" class="form-control" name="duration" required/>
+                    <input type="text" class="form-control" name="duration" id="updateduration" required/>
                 </p>
             </div>
             <div class="dialog-footer">
@@ -228,6 +228,7 @@
 </body>
 
 <script>
+
     function addBox() {
         document.getElementById("dialog").style.display = "block";
         document.getElementById("addbox").style.display = "block";
@@ -235,8 +236,22 @@
 
     function updateBox(item) {
         const vid = document.getElementById("updatevid");
+        const type = document.getElementById(item.type + 'op');
+        const vname = document.getElementById("updatevname");
+        const viewCount = document.getElementById("updateview");
+        const likeCount = document.getElementById("updatelike");
+        const publishDate = document.getElementById("updatepublish");
+        const duration = document.getElementById("updateduration");
 
-        vid.setAttribute('value', item);
+        let date = new Date(item.publishDate).toISOString().split('T')[0];
+
+        vid.setAttribute('value', item.vid);
+        type.setAttribute('selected', 'selected');
+        vname.setAttribute('value', item.vname);
+        viewCount.setAttribute('value', item.viewCount);
+        likeCount.setAttribute('value', item.likeCount);
+        publishDate.value = date;
+        duration.setAttribute('value', item.duration);
 
         document.getElementById("dialog").style.display = "block";
         document.getElementById("updatebox").style.display = "block";
