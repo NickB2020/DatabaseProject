@@ -1,5 +1,7 @@
-var express = require("express");
-var path = require("path");
+const express = require("express");
+const session = require("express-session");
+const filestore = require("session-file-store")(session);
+const path = require("path");
 const moment = require("moment");
 /*
 var cookieparser = require("cookie-parser");
@@ -22,10 +24,20 @@ app.set("view engine", "ejs");
 app.use((req, res, next)=>{
     res.locals.moment = moment;
     next();
-  });
+});
   
+app.use(session({
+  name: "session-id",
+  secret: "supersecretcode", // Secret key,
+  saveUninitialized: false,
+  resave: false,
+  store: new filestore()
+}))
+
 app.use("/", require("./routes/web"));
 app.use("/api", require("./routes/api"));
+
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 

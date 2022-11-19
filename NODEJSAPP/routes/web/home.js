@@ -1,6 +1,6 @@
-var express = require("express");
-var database = require("../../database.js");
-var router = express.Router();
+const express = require("express");
+const database = require("../../database.js");
+const router = express.Router();
 
 /*HOME PAGE*/
 router.get("/", function(req, res){

@@ -1,17 +1,10 @@
-var express = require("express");
-
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
 router.use("/", require("./home"));
 
-router.use("/", require("./login"));
+router.use("/auth", require("./auth"));
 
-router.use("/", require("./add"));
-
-router.use("/", require("./search"));
-
-router.use("/", require("./delete"));
-
-router.use("/", require("./update"));
+router.use("/admin", require("./admin"));
 
 module.exports = router;
