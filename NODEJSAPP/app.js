@@ -3,15 +3,8 @@ const session = require("express-session");
 const filestore = require("session-file-store")(session);
 const path = require("path");
 const moment = require("moment");
-/*
-var cookieparser = require("cookie-parser");
-var session = require("express-session");
-var flash = require("connect-flash");
-*/
-
-
-//var routes = require("./routes");
-
+//var cookieparser = require("cookie-parser");
+//var flash = require("connect-flash");
 
 var app = express();
 
@@ -36,8 +29,6 @@ app.use(session({
 
 app.use("/", require("./routes/web"));
 app.use("/api", require("./routes/api"));
-
-
 
 app.use(express.static(path.join(__dirname, 'public')));
 
