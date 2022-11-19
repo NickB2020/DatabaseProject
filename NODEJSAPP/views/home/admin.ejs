@@ -262,7 +262,7 @@
             <% } %>
 
             <% if(parseInt(pager.pageCurrent) == pager.pageCount) { %>
-                <li class="page-item disabled"><a class="page-link" href="/admin?page=<%= parseInt(pager.pageCurrent) - 1 %>">Next</a></li>
+                <li class="page-item disabled"><a class="page-link" href="?searchType=<%= searchType %>&page=<%= parseInt(pager.pageCurrent) - 1 %>">Next</a></li>
             <% } else { %>
                 <li class="page-item"><a class="page-link" href="?searchType=<%= searchType %>&page=<%= parseInt(pager.pageCurrent) + 1 %>">Next</a></li>
             <% } %>

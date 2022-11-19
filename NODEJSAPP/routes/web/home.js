@@ -4,81 +4,194 @@ const router = express.Router();
 
 /*HOME PAGE*/
 router.get("/", function(req, res){
-
-    database.query('Select vid From video Limit 10', function (error, results) {
-      if(error) throw error;
-  
-      res.render("home/", {data: results});
-    });
-      
+  res.redirect("/home");
 });
   
 router.get("/home", function(req, res){
+  let pageNum = req.query.page;
+  let query = "Select vid From video"
 
-  database.query('Select vid From video Limit 10', function (error, results) {
-    if(error) throw error;
+  database.query(query, function (error, results) {
+    if(error) {
+      throw error;
+    }
 
-    res.render("home/", {data: results});
+    let pager = {}; // records pager
+      
+    pager.maxRecord = results.length; // total records from database
+    pager.pageSize = 5; // records per page
+    pager.pageCount = parseInt(Math.ceil(pager.maxRecord / pager.pageSize)); // number of pages in total
+    pager.pageCurrent = pageNum || 1; // default current page
+
+    // (0, 20) (20, 40) (40, 80) ... 
+    let dataList = results.slice((pager.pageCurrent - 1) * pager.pageSize, (pager.pageCurrent - 1) * pager.pageSize + pager.pageSize);
+
+    res.render('home/', {
+      data: dataList,
+      pager: pager
+    });
   });
 
 });
 
 router.get("/cpp", function(req, res){
+  let pageNum = req.query.page;
+  let query = "Select vid From video WHERE type = 'cpp';";
 
-  database.query("Select vid From video WHERE type = 'cpp' Limit 10", function (error, results) {
-    if(error) throw error;
+  database.query(query, function (error, results) {
+    if(error) {
+      throw error;
+    }
 
-    res.render("home/", {data: results});
+    let pager = {}; // records pager
+      
+    pager.maxRecord = results.length; // total records from database
+    pager.pageSize = 5; // records per page
+    pager.pageCount = parseInt(Math.ceil(pager.maxRecord / pager.pageSize)); // number of pages in total
+    pager.pageCurrent = pageNum || 1; // default current page
+
+    // (0, 20) (20, 40) (40, 80) ... 
+    let dataList = results.slice((pager.pageCurrent - 1) * pager.pageSize, (pager.pageCurrent - 1) * pager.pageSize + pager.pageSize);
+
+    res.render('home/', {
+      data: dataList,
+      pager: pager
+    });
   });
 
 });
 
 router.get("/java", function(req, res){
+  let pageNum = req.query.page;
+  let query = "Select vid From video WHERE type = 'java';";
 
-  database.query("Select vid From video WHERE type = 'java' Limit 10", function (error, results) {
-    if(error) throw error;
+  database.query(query, function (error, results) {
+    if(error) {
+      throw error;
+    }
 
-    res.render("home/", {data: results});
+    let pager = {}; // records pager
+      
+    pager.maxRecord = results.length; // total records from database
+    pager.pageSize = 5; // records per page
+    pager.pageCount = parseInt(Math.ceil(pager.maxRecord / pager.pageSize)); // number of pages in total
+    pager.pageCurrent = pageNum || 1; // default current page
+
+    // (0, 20) (20, 40) (40, 80) ... 
+    let dataList = results.slice((pager.pageCurrent - 1) * pager.pageSize, (pager.pageCurrent - 1) * pager.pageSize + pager.pageSize);
+
+    res.render('home/', {
+      data: dataList,
+      pager: pager
+    });
   });
 
 });
 
 router.get("/javascript", function(req, res){
+  let pageNum = req.query.page;
+  let query = "Select vid From video WHERE type = 'javascript';";
 
-  database.query("Select vid From video WHERE type = 'javascript' Limit 10", function (error, results) {
-    if(error) throw error;
+  database.query(query, function (error, results) {
+    if(error) {
+      throw error;
+    }
 
-    res.render("home/", {data: results});
+    let pager = {}; // records pager
+      
+    pager.maxRecord = results.length; // total records from database
+    pager.pageSize = 5; // records per page
+    pager.pageCount = parseInt(Math.ceil(pager.maxRecord / pager.pageSize)); // number of pages in total
+    pager.pageCurrent = pageNum || 1; // default current page
+
+    // (0, 20) (20, 40) (40, 80) ... 
+    let dataList = results.slice((pager.pageCurrent - 1) * pager.pageSize, (pager.pageCurrent - 1) * pager.pageSize + pager.pageSize);
+
+    res.render('home/', {
+      data: dataList,
+      pager: pager
+    });
   });
 
 });
 
 router.get("/sql", function(req, res){
+  let pageNum = req.query.page;
+  let query = "Select vid From video WHERE type = 'sql';";
 
-  database.query("Select vid From video WHERE type = 'sql' Limit 10", function (error, results) {
-    if(error) throw error;
+  database.query(query, function (error, results) {
+    if(error) {
+      throw error;
+    }
 
-    res.render("home/", {data: results});
+    let pager = {}; // records pager
+      
+    pager.maxRecord = results.length; // total records from database
+    pager.pageSize = 5; // records per page
+    pager.pageCount = parseInt(Math.ceil(pager.maxRecord / pager.pageSize)); // number of pages in total
+    pager.pageCurrent = pageNum || 1; // default current page
+
+    // (0, 20) (20, 40) (40, 80) ... 
+    let dataList = results.slice((pager.pageCurrent - 1) * pager.pageSize, (pager.pageCurrent - 1) * pager.pageSize + pager.pageSize);
+
+    res.render('home/', {
+      data: dataList,
+      pager: pager
+    });
   });
 
 });
 
 router.get("/asp", function(req, res){
+  let pageNum = req.query.page;
+  let query = "Select vid From video WHERE type = 'asp';";
 
-  database.query("Select vid From video WHERE type = 'asp' Limit 10", function (error, results) {
-    if(error) throw error;
+  database.query(query, function (error, results) {
+    if(error) {
+      throw error;
+    }
 
-    res.render("home/", {data: results});
+    let pager = {}; // records pager
+      
+    pager.maxRecord = results.length; // total records from database
+    pager.pageSize = 5; // records per page
+    pager.pageCount = parseInt(Math.ceil(pager.maxRecord / pager.pageSize)); // number of pages in total
+    pager.pageCurrent = pageNum || 1; // default current page
+
+    // (0, 20) (20, 40) (40, 80) ... 
+    let dataList = results.slice((pager.pageCurrent - 1) * pager.pageSize, (pager.pageCurrent - 1) * pager.pageSize + pager.pageSize);
+
+    res.render('home/', {
+      data: dataList,
+      pager: pager
+    });
   });
 
 });
 
 router.get("/python", function(req, res){
+  let pageNum = req.query.page;
+  let query = "Select vid From video WHERE type = 'python';";
 
-  database.query("Select vid From video WHERE type = 'python' Limit 10", function (error, results) {
-    if(error) throw error;
+  database.query(query, function (error, results) {
+    if(error) {
+      throw error;
+    }
 
-    res.render("home/", {data: results});
+    let pager = {}; // records pager
+      
+    pager.maxRecord = results.length; // total records from database
+    pager.pageSize = 5; // records per page
+    pager.pageCount = parseInt(Math.ceil(pager.maxRecord / pager.pageSize)); // number of pages in total
+    pager.pageCurrent = pageNum || 1; // default current page
+
+    // (0, 20) (20, 40) (40, 80) ... 
+    let dataList = results.slice((pager.pageCurrent - 1) * pager.pageSize, (pager.pageCurrent - 1) * pager.pageSize + pager.pageSize);
+
+    res.render('home/', {
+      data: dataList,
+      pager: pager
+    });
   });
 
 });
@@ -86,14 +199,10 @@ router.get("/python", function(req, res){
 /* LOGIN PAGE */
 router.get("/login", function(req, res){
     res.render("home/login");
-    
 });
 
 router.get("/signup", function(req, res){
   res.render("home/signup");
-  
 });
-
-/* USER PAGE */
 
 module.exports = router;

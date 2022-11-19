@@ -38,6 +38,48 @@
         </div>
       <% } } %>
     </div>
+    <div class="container mt-3">
+      <ul class="pagination">
+          <% let nextDisplay = 2; %>
+          <% let prevDisplay = 2; %>
+          <li class="page-item disabled"><a class="page-link" href="#"><%= pager.maxRecord %> records</a></li>
+          <li class="page-item disabled"><a class="page-link" href="#"><%= pager.pageCount %> pages</a></li>
+          <li class="page-item"><a class="page-link" href="?page=1">First page</a></li>
+
+          <!-- 
+          <% if(parseInt(pager.pageCurrent) == 1) { %>
+              <li class="page-item disabled"><a class="page-link" href="/admin?page=<%= parseInt(pager.pageCurrent) - 1 %>">Previous</a></li>
+          <% } else { %>
+              <li class="page-item"><a class="page-link" href="/admin?page=<%= parseInt(pager.pageCurrent) - 1 %>">Previous</a></li>
+          <% } %>
+          -->
+
+          <% for(let i=prevDisplay; i > 0; i--) { %>
+              <% if(parseInt(pager.pageCurrent) - i > 0) { %>
+                  <li class="page-item"><a class="page-link" 
+                      href="?page=<%= parseInt(pager.pageCurrent) - i %>">
+                      <%= parseInt(pager.pageCurrent) - i %></a>
+                  </li>
+              <% } %>
+          <% } %>
+
+          <li class="page-item active"><a class="page-link" href="?page=<%= pager.pageCurrent %>"><%= pager.pageCurrent %></a></li>
+
+          <% for(let i=1; i <= nextDisplay; i++) { %>
+              <% if(parseInt(pager.pageCurrent) + i <= pager.pageCount) { %>
+                  <li class="page-item"><a class="page-link" href="?page=<%= parseInt(pager.pageCurrent) + i %>"><%= parseInt(pager.pageCurrent) + i %></a></li>
+              <% } %>
+          <% } %>
+
+          <% if(parseInt(pager.pageCurrent) == pager.pageCount) { %>
+              <li class="page-item disabled"><a class="page-link" href="?page=<%= parseInt(pager.pageCurrent) - 1 %>">Next</a></li>
+          <% } else { %>
+              <li class="page-item"><a class="page-link" href="?page=<%= parseInt(pager.pageCurrent) + 1 %>">Next</a></li>
+          <% } %>
+
+          <li class="page-item"><a class="page-link" href="?page=<%= pager.pageCount %>">Last page</a></li>
+      </ul>
+    </div>
   </div>
 </body>
 </html>

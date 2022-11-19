@@ -38,8 +38,6 @@ router.get("/", function(req, res) {
       // (0, 20) (20, 40) (40, 80) ... 
       let dataList = results.slice((pager.pageCurrent - 1) * pager.pageSize, (pager.pageCurrent - 1) * pager.pageSize + pager.pageSize);
   
-      console.log(searchType);
-  
       res.render('home/admin', {
         data: dataList,
         pager: pager,
