@@ -17,10 +17,11 @@ router.get("/", function(req, res) {
   
     if(searchType === 'all' || searchType == null) {
       searchType = 'all';
-      query = 'SELECT * FROM video;';
+      query = 'SELECT * FROM video Order By publishDate DESC;';
     }
     else {
-      query = ("SELECT * FROM video where type = '" + searchType + "';");
+      //
+      query = ("SELECT * FROM video where type = '" + searchType + "' Order By publishDate DESC;");
     }
   
     database.query(query, function (error, results) {

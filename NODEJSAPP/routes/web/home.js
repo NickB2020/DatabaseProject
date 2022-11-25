@@ -6,10 +6,29 @@ const router = express.Router();
 router.get("/", function(req, res){
   res.redirect("/home");
 });
-  
+
+/*HOME PAGE: All category*/
 router.get("/home", function(req, res){
   let pageNum = req.query.page;
-  let query = "Select vid From video"
+  let sortby = req.query.sortby || 'default';
+  let query;
+
+  switch(sortby) {
+    case 'publishDate':
+      query = "Select vid From video Order By publishDate DESC;";
+      break;
+    case 'duration':
+      query = "Select vid From video Order By duration DESC;";
+      break;
+    case 'viewCount':
+      query = "Select vid From video Order By viewCount DESC;";
+      break;
+    case 'rating':
+      query = "Select vid From video Order By (likeCount/viewCount) DESC;";
+      break;
+    default:
+      query = "Select vid From video Order By publishDate DESC;";
+  }
 
   database.query(query, function (error, results) {
     if(error) {
@@ -28,15 +47,34 @@ router.get("/home", function(req, res){
 
     res.render('home/', {
       data: dataList,
-      pager: pager
+      pager: pager,
+      sortby: sortby
     });
   });
-
 });
 
+/*HOME PAGE: C++ category*/
 router.get("/cpp", function(req, res){
   let pageNum = req.query.page;
-  let query = "Select vid From video WHERE type = 'cpp';";
+  let sortby = req.query.sortby || 'default';
+  let query;
+
+  switch(sortby) {
+    case 'publishDate':
+      query = "Select vid From video Where type = 'cpp' Order By publishDate DESC;";
+      break;
+    case 'duration':
+      query = "Select vid From video Where type = 'cpp' Order By duration DESC;";
+      break;
+    case 'viewCount':
+      query = "Select vid From video Where type = 'cpp' Order By viewCount DESC;";
+      break;
+    case 'rating':
+      query = "Select vid From video Where type = 'cpp' Order By (likeCount/viewCount) DESC;";
+      break;
+    default:
+      query = "Select vid From video Where type = 'cpp' Order By publishDate DESC;";
+  }
 
   database.query(query, function (error, results) {
     if(error) {
@@ -55,15 +93,34 @@ router.get("/cpp", function(req, res){
 
     res.render('home/', {
       data: dataList,
-      pager: pager
+      pager: pager,
+      sortby: sortby
     });
   });
-
 });
 
+/*HOME PAGE: Java category*/
 router.get("/java", function(req, res){
   let pageNum = req.query.page;
-  let query = "Select vid From video WHERE type = 'java';";
+  let sortby = req.query.sortby || 'default';
+  let query;
+
+  switch(sortby) {
+    case 'publishDate':
+      query = "Select vid From video Where type = 'java' Order By publishDate DESC;";
+      break;
+    case 'duration':
+      query = "Select vid From video Where type = 'java' Order By duration DESC;";
+      break;
+    case 'viewCount':
+      query = "Select vid From video Where type = 'java' Order By viewCount DESC;";
+      break;
+    case 'rating':
+      query = "Select vid From video Where type = 'java' Order By (likeCount/viewCount) DESC;";
+      break;
+    default:
+      query = "Select vid From video Where type = 'java' Order By publishDate DESC;";
+  }
 
   database.query(query, function (error, results) {
     if(error) {
@@ -82,15 +139,34 @@ router.get("/java", function(req, res){
 
     res.render('home/', {
       data: dataList,
-      pager: pager
+      pager: pager,
+      sortby: sortby
     });
   });
-
 });
 
+/*HOME PAGE: Javascript category*/
 router.get("/javascript", function(req, res){
   let pageNum = req.query.page;
-  let query = "Select vid From video WHERE type = 'javascript';";
+  let sortby = req.query.sortby || 'default';
+  let query;
+
+  switch(sortby) {
+    case 'publishDate':
+      query = "Select vid From video Where type = 'javascript' Order By publishDate DESC;";
+      break;
+    case 'duration':
+      query = "Select vid From video Where type = 'javascript' Order By duration DESC;";
+      break;
+    case 'viewCount':
+      query = "Select vid From video Where type = 'javascript' Order By viewCount DESC;";
+      break;
+    case 'rating':
+      query = "Select vid From video Where type = 'javascript' Order By (likeCount/viewCount) DESC;";
+      break;
+    default:
+      query = "Select vid From video Where type = 'javascript' Order By publishDate DESC;";
+  }
 
   database.query(query, function (error, results) {
     if(error) {
@@ -109,15 +185,34 @@ router.get("/javascript", function(req, res){
 
     res.render('home/', {
       data: dataList,
-      pager: pager
+      pager: pager,
+      sortby: sortby
     });
   });
-
 });
 
+/*HOME PAGE: SQL category*/
 router.get("/sql", function(req, res){
   let pageNum = req.query.page;
-  let query = "Select vid From video WHERE type = 'sql';";
+  let sortby = req.query.sortby || 'default';
+  let query;
+
+  switch(sortby) {
+    case 'publishDate':
+      query = "Select vid From video Where type = 'sql' Order By publishDate DESC;";
+      break;
+    case 'duration':
+      query = "Select vid From video Where type = 'sql' Order By duration DESC;";
+      break;
+    case 'viewCount':
+      query = "Select vid From video Where type = 'sql' Order By viewCount DESC;";
+      break;
+    case 'rating':
+      query = "Select vid From video Where type = 'sql' Order By (likeCount/viewCount) DESC;";
+      break;
+    default:
+      query = "Select vid From video Where type = 'sql' Order By publishDate DESC;";
+  }
 
   database.query(query, function (error, results) {
     if(error) {
@@ -136,15 +231,34 @@ router.get("/sql", function(req, res){
 
     res.render('home/', {
       data: dataList,
-      pager: pager
+      pager: pager,
+      sortby: sortby
     });
   });
-
 });
 
+/*HOME PAGE: ASP category*/
 router.get("/asp", function(req, res){
   let pageNum = req.query.page;
-  let query = "Select vid From video WHERE type = 'asp';";
+  let sortby = req.query.sortby || 'default';
+  let query;
+
+  switch(sortby) {
+    case 'publishDate':
+      query = "Select vid From video Where type = 'asp' Order By publishDate DESC;";
+      break;
+    case 'duration':
+      query = "Select vid From video Where type = 'asp' Order By duration DESC;";
+      break;
+    case 'viewCount':
+      query = "Select vid From video Where type = 'asp' Order By viewCount DESC;";
+      break;
+    case 'rating':
+      query = "Select vid From video Where type = 'asp' Order By (likeCount/viewCount) DESC;";
+      break;
+    default:
+      query = "Select vid From video Where type = 'asp' Order By publishDate DESC;";
+  }
 
   database.query(query, function (error, results) {
     if(error) {
@@ -163,15 +277,34 @@ router.get("/asp", function(req, res){
 
     res.render('home/', {
       data: dataList,
-      pager: pager
+      pager: pager,
+      sortby: sortby
     });
   });
-
 });
 
+/*HOME PAGE: Python category*/
 router.get("/python", function(req, res){
   let pageNum = req.query.page;
-  let query = "Select vid From video WHERE type = 'python';";
+  let sortby = req.query.sortby || 'default';
+  let query;
+
+  switch(sortby) {
+    case 'publishDate':
+      query = "Select vid From video Where type = 'python' Order By publishDate DESC;";
+      break;
+    case 'duration':
+      query = "Select vid From video Where type = 'python' Order By duration DESC;";
+      break;
+    case 'viewCount':
+      query = "Select vid From video Where type = 'python' Order By viewCount DESC;";
+      break;
+    case 'rating':
+      query = "Select vid From video Where type = 'python' Order By (likeCount/viewCount) DESC;";
+      break;
+    default:
+      query = "Select vid From video Where type = 'python' Order By publishDate DESC;";
+  }
 
   database.query(query, function (error, results) {
     if(error) {
@@ -190,10 +323,10 @@ router.get("/python", function(req, res){
 
     res.render('home/', {
       data: dataList,
-      pager: pager
+      pager: pager,
+      sortby: sortby
     });
   });
-
 });
 
 /* LOGIN PAGE */

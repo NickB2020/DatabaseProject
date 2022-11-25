@@ -9,7 +9,9 @@ router.post("/", function(req, res){
   let val = req.body;
   let userName = val.userName;
   let userPassword = val.userPassword;
-  let query = 'Select * From user where uname=? AND upassword=?'
+  let query = 'Select * From user where uname=? AND upassword=?;'
+  // for demo sql injection:
+  //let query = "Select * From user where uname = '" + userName + "' AND upassword = '" + userPassword + "';";
 
   database.query(query, [userName, userPassword], function(error, data) {
     if(error) {
