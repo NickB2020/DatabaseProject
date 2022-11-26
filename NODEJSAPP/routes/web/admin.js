@@ -7,44 +7,48 @@ router.use(bodyParser.urlencoded({ extended : true }));
 
 /* Get: admin index */
 router.get("/", function(req, res) {
-    if(req.session.user !== "admin") {
-      res.redirect('home');
+  if(req.session.loggedin != true) {
+    res.redirect('login');
+  }
+
+  if(req.session.user !== "admin") {
+    res.redirect('home');
+  }
+
+  let pageNum = req.query.page;
+  let searchType = req.query.searchType;
+  let query;
+
+  if(searchType === 'all' || searchType == null) {
+    searchType = 'all';
+    query = 'SELECT * FROM video Order By publishDate DESC;';
+  }
+  else {
+    //
+    query = ("SELECT * FROM video where type = '" + searchType + "' Order By publishDate DESC;");
+  }
+
+  database.query(query, function (error, results) {
+    if(error) {
+      throw error;
     }
-  
-    let pageNum = req.query.page;
-    let searchType = req.query.searchType;
-    let query;
-  
-    if(searchType === 'all' || searchType == null) {
-      searchType = 'all';
-      query = 'SELECT * FROM video Order By publishDate DESC;';
-    }
-    else {
-      //
-      query = ("SELECT * FROM video where type = '" + searchType + "' Order By publishDate DESC;");
-    }
-  
-    database.query(query, function (error, results) {
-      if(error) {
-        throw error;
-      }
-  
-      let pager = {}; // records pager
-      
-      pager.maxRecord = results.length; // total records from database
-      pager.pageSize = 15; // records per page
-      pager.pageCount = parseInt(Math.ceil(pager.maxRecord / pager.pageSize)); // number of pages in total
-      pager.pageCurrent = pageNum || 1; // default current page
-  
-      // (0, 20) (20, 40) (40, 80) ... 
-      let dataList = results.slice((pager.pageCurrent - 1) * pager.pageSize, (pager.pageCurrent - 1) * pager.pageSize + pager.pageSize);
-  
-      res.render('home/admin', {
-        data: dataList,
-        pager: pager,
-        searchType: searchType
-      });
-    })
+
+    let pager = {}; // records pager
+    
+    pager.maxRecord = results.length; // total records from database
+    pager.pageSize = 15; // records per page
+    pager.pageCount = parseInt(Math.ceil(pager.maxRecord / pager.pageSize)); // number of pages in total
+    pager.pageCurrent = pageNum || 1; // default current page
+
+    // (0, 20) (20, 40) (40, 80) ... 
+    let dataList = results.slice((pager.pageCurrent - 1) * pager.pageSize, (pager.pageCurrent - 1) * pager.pageSize + pager.pageSize);
+
+    res.render('home/admin', {
+      data: dataList,
+      pager: pager,
+      searchType: searchType
+    });
+  })
 });
 
 /* Post: add record */

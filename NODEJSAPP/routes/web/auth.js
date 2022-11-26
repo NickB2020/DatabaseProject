@@ -18,7 +18,8 @@ router.post("/", function(req, res){
       throw error;
     }
     else if ( data.length > 0){
-      req.session.user = userName; // store session
+      req.session.user = userName; // session store user name
+      req.session.loggedin = true; // session store user login status
 
       console.log(req.session.user + "logged in"); // logging
 

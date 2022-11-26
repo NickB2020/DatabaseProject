@@ -329,9 +329,35 @@ router.get("/python", function(req, res){
   });
 });
 
-/* LOGIN PAGE */
+/* LOG IN */
 router.get("/login", function(req, res){
+  if(req.session.loggedin != true) {
     res.render("home/login");
+  }
+  
+  if(req.session.user === 'admin') {
+    res.redirect("./admin");
+  }
+
+  else {
+    res.redirect("/");
+  }
+});
+
+/* LOG OUT */
+router.get("/logout", function(req, res){
+  if(req.session) {
+    req.session.destroy(error => {
+      if(error) {
+        res.status(400).send('Unable to log out');
+        console.log('log out error'); // logging
+      } else {
+        res.redirect("/");
+      }
+    });
+  } else {
+    res.end();
+  }
 });
 
 router.get("/signup", function(req, res){

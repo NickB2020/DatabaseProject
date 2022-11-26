@@ -13,11 +13,6 @@ app.set("port", process.env.PORT || 3000);
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-
-app.use((req, res, next)=>{
-    res.locals.moment = moment;
-    next();
-});
   
 app.use(session({
   name: "session-id",
@@ -26,6 +21,12 @@ app.use(session({
   resave: false,
   store: new filestore()
 }))
+
+app.use((req, res, next)=>{
+  res.locals.moment = moment;
+  res.locals.session = req.session;
+  next();
+});
 
 app.use("/", require("./routes/web"));
 app.use("/api", require("./routes/api"));
